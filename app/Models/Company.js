@@ -3,6 +3,8 @@
 const BaseModel = use('MongooseModel');
 const { Schema } = use('mongoose');
 
+const validator = use('App/Validators/Company');
+
 class Company extends BaseModel {
   static boot({ schema }) {
 
@@ -10,6 +12,21 @@ class Company extends BaseModel {
 
   static get schema() {
     return {
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+          isAsync: true,
+          validator: validator.validateEmail,
+          message: 'Invalid Email',
+        }
+      },
+      password: {
+        type: String,
+        required: true,
+        minLength: 8,
+      },
       name: {
         type: String,
         required: true,
@@ -31,8 +48,6 @@ class Company extends BaseModel {
         required: true,
         unique: true,
       }],
-      
-
     }
   }
 }

@@ -1,0 +1,23 @@
+'use strict'
+
+const { validate } = use('Validator');
+
+class Company {
+
+  async validateEmail(email) {
+
+    let rules = {
+      email: 'required|email'
+    }
+
+    let validation = await validate({ email }, rules);
+
+    if (validation.fails())
+      return false;
+
+    return true;
+  }
+
+}
+
+module.exports = new Company()

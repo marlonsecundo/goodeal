@@ -7,15 +7,21 @@ const validator = use('App/Validators/User');
 
 class User extends BaseModel {
   static boot({ schema }) {
+    this.addHook('preSave', 'UserHook.hashPassword');
   
   }
 
   static get schema() {
     return {
-      
       name: {
         type: String,
         required: true,
+      },
+      username:{
+        type: String,
+        required: true,
+        unique: true,
+        minLength: 3,
       },
       cpf: {
         type: String,
@@ -35,6 +41,7 @@ class User extends BaseModel {
       password: {
         type: String,
         required: true,
+        minLength: 8,
       },
       birth: {
         type: Date,

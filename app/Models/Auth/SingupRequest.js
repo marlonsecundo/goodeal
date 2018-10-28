@@ -19,6 +19,11 @@ class SingupRequest extends BaseModel {
         type: String,
         required: true,
       },
+      username:{
+        type: String,
+        required: true,
+        unique: true,
+      },
       cpf: {
         type: String,
         required: true,

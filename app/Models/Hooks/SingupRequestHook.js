@@ -7,12 +7,14 @@ const ValidationEx = use('App/Exceptions/ValidationException');
 
 SingupRequestHook.checkDuplicateUser = async (singup) => {
 
-    let user = await User.findOne({ cpf: singup.cpf, email: singup.email });
+    let user = await User.findOne({
+        $or: [
+            { email: singup.email },
+            { username: singup.username }
+        ]
+    });
 
     if (!!user)
         throw new ValidationEx();
-
-        
-
 
 }

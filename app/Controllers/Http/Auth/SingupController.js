@@ -13,8 +13,8 @@ class SingupController {
 
     async register({ request, response }) {
 
-        let { name, email, password, cpf, birth } = request.all();
-        let token = md5(email + password + cpf);
+        let { username, email, password, cpf } = request.all();
+        let token = md5(email + password + cpf + username);
 
         let singup = await SingupRequest.create({ ...request.all(), token });
 
@@ -37,9 +37,9 @@ class SingupController {
 
         await SingupRequest.deleteOne({ token: params.token });
 
-        let { email, name, cpf, birth, password } = singup;
+        let { email, username, name, cpf, birth, password } = singup;
 
-        await User.create({email, name, cpf, birth, password});
+        await User.create({email, username, name, cpf, birth, password});
 
         response.status(201).send("User has been registred.")
     }
