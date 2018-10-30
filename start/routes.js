@@ -7,8 +7,8 @@ const Route = use('Route')
 Route.group(() => {
 
   // Singup
-  Route.post("/singup", "Auth/SingupController.register");
-  Route.get("/confirm-email/:token", "Auth/SingupController.confirm");
+  Route.post("/singup", "Auth/SignupController.register");
+  Route.get("/confirm-email/:token", "Auth/SignupController.confirm");
 
   // Login
   Route.post("/login", "Auth/AuthController.login");

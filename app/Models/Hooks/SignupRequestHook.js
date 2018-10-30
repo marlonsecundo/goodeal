@@ -1,11 +1,11 @@
 'use strict'
 
-const SingupRequestHook = exports = module.exports = {}
+const SignupRequestHook = exports = module.exports = {}
 
 const User = use('App/Models/User');
 const ValidationEx = use('App/Exceptions/ValidationException');
 
-SingupRequestHook.checkDuplicateUser = async (singup) => {
+SignupRequestHook.checkDuplicateUser = async (singup) => {
 
     let user = await User.findOne({
         $or: [
@@ -14,7 +14,5 @@ SingupRequestHook.checkDuplicateUser = async (singup) => {
         ]
     });
 
-    if (!!user)
-        throw new ValidationEx();
-
+    if (!!user) throw new ValidationEx();
 }

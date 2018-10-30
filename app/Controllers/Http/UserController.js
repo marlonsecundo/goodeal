@@ -8,7 +8,11 @@ class UserController {
 
         let { username, email, name, cpf, birth, goodies, fillCards } = await auth.getUser();
 
+        await auth.getUser();
+
         response.status(200).send({ username, email, name, cpf, birth, goodies, fillCards });
+        
+        response.send(data);
     }
 
     async update({ request, response }) {

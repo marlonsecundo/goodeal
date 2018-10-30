@@ -8,7 +8,7 @@ const validator = use('App/Validators/User');
 class User extends BaseModel {
   static boot({ schema }) {
     this.addHook('preSave', 'UserHook.hashPassword');
-  
+    this.index({ email: 1 }, { background: true })
   }
 
   static get schema() {

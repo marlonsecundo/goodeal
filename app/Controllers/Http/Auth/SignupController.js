@@ -2,7 +2,7 @@
 
 const md5 = require('md5');
 
-const SingupRequest = use('App/Models/Auth/SingupRequest');
+const SignupRequest = use('App/Models/Auth/SignupRequest');
 const User = use('App/Models/User');
 const Mail = use('Mail');
 
@@ -14,11 +14,11 @@ class SingupController {
     async register({ request, response }) {
 
         let { username, email, password, cpf } = request.all();
-        let token = md5(email + password + cpf + username);
+        let token = md5(email + password + username + cpf);
 
-        let singup = await SingupRequest.create({ ...request.all(), token });
+        let signup = await SignupRequest.create({ ...request.all(), token });
 
-        await Mail.send('auth.confirmSingup', singup, (message) => {
+        await Mail.send('auth.confirmSignup', signup, (message) => {
             message
                 .to(email)
                 .from('goodeal@account.com')
@@ -30,16 +30,15 @@ class SingupController {
 
     async confirm({ params, response }) {
 
-        let singup = await SingupRequest.findOne({ token: params.token });
+        let signup = await SignupRequest.findOne({ token: params.token });
 
-        if (!singup)
-            throw new NotFoundEx();
+        if (!signup) throw new NotFoundEx();
 
-        await SingupRequest.deleteOne({ token: params.token });
+        await SignupRequest.deleteOne({ token: params.token });
 
-        let { email, username, name, cpf, birth, password } = singup;
+        let { email, username, name, cpf, birth, password } = signup;
 
-        await User.create({email, username, name, cpf, birth, password});
+        await User.create({ email, username, name, cpf, birth, password });
 
         response.status(201).send("User has been registred.")
     }

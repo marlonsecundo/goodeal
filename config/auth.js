@@ -10,6 +10,7 @@ module.exports = {
   jwt: {
     serializer: 'mongoose',
     model: 'App/Models/User',
+    token: 'App/Models/Token',
     scheme: 'jwt',
     uid: 'email',
     password: 'password',

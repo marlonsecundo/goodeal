@@ -7,7 +7,7 @@ const validator = use('App/Validators/Company');
 
 class Company extends BaseModel {
   static boot({ schema }) {
-
+    
   }
 
   static get schema() {
@@ -21,6 +21,12 @@ class Company extends BaseModel {
           validator: validator.validateEmail,
           message: 'Invalid Email',
         }
+      },
+      username:{
+        type: String,
+        required: true,
+        unique: true,
+        minLength: 3,
       },
       password: {
         type: String,
