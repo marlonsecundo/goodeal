@@ -4,20 +4,18 @@ const User = use('App/Models/User');
 
 class UserController {
 
-    async show({ request, response, auth }) {
+    async index({ response, auth }) {
 
         let { username, email, name, cpf, birth, goodies, fillCards } = await auth.getUser();
 
-        await auth.getUser();
-
         response.status(200).send({ username, email, name, cpf, birth, goodies, fillCards });
-        
-        response.send(data);
+    }
+
+    async store({ response, auth }) {
+
     }
 
     async update({ request, response }) {
-
-
 
     }
 

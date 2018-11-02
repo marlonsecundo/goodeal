@@ -4,7 +4,8 @@ const BaseModel = use('MongooseModel')
 
 class Address extends BaseModel {
   static boot({ schema }) {
-
+    this.index({ street: 1, number: 1, neighborhood: 1, cep: 1, city: 1 }, { unique: true });
+    this.addHook('postInit', 'AddressHook.filterData');
   }
 
   static get schema() {
@@ -28,7 +29,7 @@ class Address extends BaseModel {
       },
       complement: {
         type: String,
-        required: true,
+        required: false,
       },
       city: {
         type: Number,

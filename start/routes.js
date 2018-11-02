@@ -1,6 +1,5 @@
 'use strict'
 
-
 const Route = use('Route')
 
 // Auth
@@ -10,18 +9,25 @@ Route.group(() => {
   Route.post("/singup", "Auth/SignupController.register");
   Route.get("/confirm-email/:token", "Auth/SignupController.confirm");
 
-  // Login
-  Route.post("/login", "Auth/AuthController.login");
-
-
 }).prefix('/auth');
 
 // User
-Route.group(() => {
+Route.post("users/login", "Auth/AuthController.loginUser");
+Route.resource('users', 'UserController')
+  .apiOnly()
+  .except('show')
+  .middleware('auth:user');
 
-  Route.get('/', 'UserController.show');
-  Route.put('/update', 'UserController.update');
-  Route.delete('/remove', 'UserController')
+// Company
+Route.post("companies/login", "Auth/AuthController.loginCompany");
+Route.resource('companies', 'CompanyController')
+  .apiOnly()
+  .except(['show', 'store'])
+  .middleware('auth:company');
 
-}).prefix('/users');
+// Card
+Route.resource('cards', 'CardController')
+  .apiOnly()
+  .middleware('auth:company');
 
+Route.post('/test', 'CompanyController.test');

@@ -5,7 +5,7 @@ const { Schema } = use('mongoose');
 
 class FillCard extends BaseModel {
   static boot({ schema }) {
-
+    this.index({ user: 1, card: 1 }, { unique: true });
   }
 
   static get schema() {
@@ -26,7 +26,7 @@ class FillCard extends BaseModel {
         required: true,
       },
       active: {
-        type: Schema.Types.Boolean,
+        type: Boolean,
         default: true,
       }
     }

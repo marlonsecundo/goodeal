@@ -7,31 +7,23 @@ const validator = use('App/Validators/Company');
 
 class Company extends BaseModel {
   static boot({ schema }) {
-    
+
+    this.addHook('preSave', 'CompanyHook.hashPassword');
+    this.addHook('postInit', 'CompanyHook.filterData');
+    this.index({ cpnj: 1 }, { background: true });
   }
+
 
   static get schema() {
     return {
-      email: {
+      cpnj: {
         type: String,
-        required: true,
         unique: true,
-        validate: {
-          isAsync: true,
-          validator: validator.validateEmail,
-          message: 'Invalid Email',
-        }
-      },
-      username:{
-        type: String,
         required: true,
-        unique: true,
-        minLength: 3,
       },
       password: {
         type: String,
         required: true,
-        minLength: 8,
       },
       name: {
         type: String,
@@ -43,11 +35,6 @@ class Company extends BaseModel {
         required: true,
         unique: true,
       }],
-      cpnj: {
-        type: String,
-        unique: true,
-        required: true,
-      },
       cards: [{
         type: Schema.Types.ObjectId,
         ref: 'Card',
