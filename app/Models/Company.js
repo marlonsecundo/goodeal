@@ -9,7 +9,6 @@ class Company extends BaseModel {
   static boot({ schema }) {
 
     this.addHook('preSave', 'CompanyHook.hashPassword');
-    this.addHook('postInit', 'CompanyHook.filterData');
     this.index({ cpnj: 1 }, { background: true });
   }
 

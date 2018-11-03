@@ -17,8 +17,6 @@ class CardController {
 
         const card = await Card.create({ name, goal, convertion, company });
 
-        
-
         response.status(201).send(card);
 
     }
