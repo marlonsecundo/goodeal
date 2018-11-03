@@ -28,7 +28,7 @@ class Company extends BaseModel {
         type: String,
         required: true,
       },
-      address: [{
+      addresses: [{
         type: Schema.Types.ObjectId,
         ref: 'Address',
         required: true,

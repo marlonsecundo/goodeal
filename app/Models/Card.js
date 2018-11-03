@@ -14,6 +14,7 @@ class Card extends BaseModel {
       name: {
         type: String,
         required: true,
+        unique: true,
       },
       goal: {
         type: Number,

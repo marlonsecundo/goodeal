@@ -28,7 +28,7 @@ class CompanyController {
 
         let add = await Address.create({ street: 'dfsf', number: 5, neighborhood: 'bairro acola', cep: '59255000', city: 5 });
 
-        let company = await Company.create({ cpnj: '111886', name: 'goodeal', password: '123', address: [add.id] });
+        let company = await Company.create({ cpnj: '111886', name: 'goodeal', password: '123', addresses: [add.id] });
 
     }
 }
