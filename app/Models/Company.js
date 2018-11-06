@@ -28,12 +28,19 @@ class Company extends BaseModel {
         type: String,
         required: true,
       },
-      addresses: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Address',
-        required: true,
-        unique: true,
-      }],
+      addresses: {
+        type: [{
+          type: Schema.Types.ObjectId,
+          ref: 'Address',
+          required: true,
+          unique: true,
+        }],
+        validate: {
+          isAsync: true,
+          validator: validator.validateArray,
+          message: 'Address is empty'
+        }
+      },
       cards: [{
         type: Schema.Types.ObjectId,
         ref: 'Card',

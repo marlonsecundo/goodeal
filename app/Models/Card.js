@@ -6,6 +6,7 @@ const { Schema } = use('mongoose');
 class Card extends BaseModel {
 
   static boot({ schema }) {
+    this.index({ name: 1, company: 1 }, { unique: true, backgroud: true });
 
   }
 
@@ -14,7 +15,6 @@ class Card extends BaseModel {
       name: {
         type: String,
         required: true,
-        unique: true,
       },
       goal: {
         type: Number,

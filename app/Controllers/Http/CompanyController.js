@@ -11,7 +11,7 @@ class CompanyController {
 
         let { cpnj } = await auth.getUser();
 
-        let company = await Company.findOne({ cpnj }, companyF).populate('address', addressF);
+        let company = await Company.findOne({ cpnj }, companyF).populate('addresses', addressF);
 
         response.status(200).send(company);
     }

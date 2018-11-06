@@ -30,4 +30,9 @@ Route.resource('cards', 'CardController')
   .apiOnly()
   .middleware('auth:company');
 
+// FillCards
+Route.resource('fillCards', 'FillCardController')
+  .apiOnly()
+  .middleware('auth:user');
+
 Route.post('/test', 'CompanyController.test');

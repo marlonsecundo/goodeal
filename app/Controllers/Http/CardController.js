@@ -8,7 +8,7 @@ class CardController {
 
 
     async index({ response, auth }) {
-        
+
         const company = await auth.getUser();
 
         const cards = await Card.find({ company: company._id }, cardF);
