@@ -22,7 +22,7 @@ Route.resource('users', 'UserController')
 Route.post("companies/login", "Auth/AuthController.loginCompany");
 Route.resource('companies', 'CompanyController')
   .apiOnly()
-  .except(['show', 'store'])
+  .except(['show'])
   .middleware('auth:company');
 
 // Card

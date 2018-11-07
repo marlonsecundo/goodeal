@@ -33,4 +33,4 @@ class FillCard extends BaseModel {
   }
 }
 
-module.exports = Stamp.buildModel('FillCard')
+module.exports = FillCard.buildModel('FillCard')

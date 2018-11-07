@@ -35,4 +35,4 @@ class Card extends BaseModel {
   }
 }
 
-module.exports = Card.buildModel('Card')
+module.exports = Card.buildModel('Card');

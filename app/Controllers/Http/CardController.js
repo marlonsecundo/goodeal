@@ -6,7 +6,6 @@ const { cardF } = use('App/Utils/ModelFilter');
 
 class CardController {
 
-
     async index({ response, auth }) {
 
         const company = await auth.getUser();
@@ -18,15 +17,33 @@ class CardController {
 
     async store({ request, response, auth }) {
 
-        const company = await auth.getUser();
+        let company = await auth.getUser();
 
         let { name, goal, convertion } = request.all();
 
         const card = await Card.create({ name, goal, convertion, company });
 
+        company.cards = [...company.cards, card._id];
+
+        await company.save();
+
         response.status(201).send(card);
 
     }
+
+    async show() {
+
+    }
+
+    async update() {
+
+    }
+
+    async destroy() {
+
+    }
+
+
 }
 
 module.exports = CardController

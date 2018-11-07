@@ -11,15 +11,15 @@ class UserController {
         response.status(200).send({ username, email, name, cpf, birth, goodies, fillCards });
     }
 
-    async store({ response, auth }) {
+    async show() {
 
     }
 
-    async update({ request, response }) {
+    async update() {
 
     }
 
-    async destroy({ request, response }) {
+    async destroy() {
 
     }
 }
