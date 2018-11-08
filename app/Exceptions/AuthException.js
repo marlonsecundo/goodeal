@@ -5,7 +5,7 @@ const { LogicalException } = require('@adonisjs/generic-exceptions')
 class AuthException extends LogicalException {
   
   handle(error, { response }) {
-    response.status(500).send('Some message')
+    response.status(403).send(error.message)
   }
 
 }
