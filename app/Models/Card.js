@@ -16,11 +16,6 @@ class Card extends BaseModel {
         type: String,
         required: true,
       },
-      goal: {
-        type: Number,
-        required: true,
-        min: 0,
-      },
       convertion: {
         type: Number,
         required: true,

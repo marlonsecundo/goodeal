@@ -3,14 +3,14 @@
 const BaseModel = use('MongooseModel');
 const { Schema } = use('mongoose');
 
-class FillCard extends BaseModel {
+class Goodies extends BaseModel {
   static boot({ schema }) {
     this.index({ user: 1, card: 1 }, { unique: true });
   }
 
   static get schema() {
     return {
-      stamp: {
+      value: {
         type: Number,
         min: 0,
         default: 0,
@@ -25,12 +25,8 @@ class FillCard extends BaseModel {
         ref: 'Card',
         required: true,
       },
-      active: {
-        type: Boolean,
-        default: true,
-      }
     }
   }
 }
 
-module.exports = FillCard.buildModel('FillCard')
+module.exports = FillCard.buildModel('Goodies')

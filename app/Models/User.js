@@ -17,7 +17,7 @@ class User extends BaseModel {
         type: String,
         required: true,
       },
-      username:{
+      username: {
         type: String,
         required: true,
         unique: true,
@@ -47,16 +47,11 @@ class User extends BaseModel {
         type: Date,
         required: true,
       },
-      fillCards: [{
+      goodies: [{
         type: Schema.Types.ObjectId,
         unique: true,
-        ref: 'FillCard'
-      }],
-      goodies: {
-        type: Number,
-        default: 0,
-        min: 0,
-      },
+        ref: 'Goodies'
+      }]
 
     }
   }

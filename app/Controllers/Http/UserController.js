@@ -6,9 +6,9 @@ class UserController {
 
     async index({ response, auth }) {
 
-        let { username, email, name, cpf, birth, goodies, fillCards } = await auth.getUser();
+        let { username, email, name, cpf, birth, goodies } = await auth.getUser();
 
-        response.status(200).send({ username, email, name, cpf, birth, goodies, fillCards });
+        response.status(200).send({ username, email, name, cpf, birth, goodies });
     }
 
     async show() {
