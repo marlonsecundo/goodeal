@@ -3,6 +3,8 @@
 const User = use('App/Models/User');
 const Company = use('App/Models/Company');
 
+const { userF, filterDoc } = use('App/Utils/ModelFilter');
+
 const Hash = use('Hash');
 
 const NotFoundEx = use('App/Exceptions/NotFoundException');
@@ -14,7 +16,7 @@ class AuthController {
 
         let { email, username, password } = request.all();
 
-        const user = await User.findOne({
+        let user = await User.findOne({
             $or: [{ email }, { username }]
         });
 
@@ -24,9 +26,11 @@ class AuthController {
 
         if (!isCheck) throw new AuthEx('Incorret username or password.');
 
-        let token = await auth.generate(user, true);
+        let token = await auth.generate(user);
 
-        response.status(201).send(token);
+        user._doc = filterDoc(user._doc, userF);
+
+        response.status(201).send({ user, token });
     }
 
     async loginCompany({ request, response, auth }) {

@@ -8,9 +8,9 @@ class ExceptionHandler extends BaseExceptionHandler {
 
   async handle(error, { request, response }) {
 
-    if (error.code == 'E_INVALID_JWT_TOKEN') return response.status(error.status).send(error.message);
+    if (['E_INVALID_JWT_TOKEN', 'E_ROUTE_NOT_FOUND'].includes(error.code)) return response.status(error.status).send(error.message);
 
-    if (error.name == 'ValidationError') return new ValidationException().handle(error, { request, response });
+    else if (error.name == 'ValidationError') return new ValidationException().handle(error, { request, response });
 
     error.handle(error, { request, response });
 
