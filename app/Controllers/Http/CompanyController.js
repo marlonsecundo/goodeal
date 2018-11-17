@@ -8,23 +8,18 @@ const { companyF, addressF, cardF } = use('App/Utils/ModelFilter');
 
 class CompanyController {
 
-    async index({ response, auth }) {
 
-        let { cpnj } = await auth.getUser();
+    async update({ request, response, auth }) {
 
-        let company = await Company.findOne({ cpnj }, companyF)
-            .populate('addresses', addressF)
-            .populate('cards', cardF);
+        const options = { new: true, runValidators: true, fields: companyF };
+
+        let { _id } = await auth.getUser();
+
+        let { name } = request.all();
+
+        let company = await Company.findOneAndUpdate(_id, { name, birth, cpf }, options);
 
         response.status(200).send(company);
-    }
-
-    async update() {
-
-    }
-
-    async destroy() {
-
     }
 
     async test({ response, auth }) {

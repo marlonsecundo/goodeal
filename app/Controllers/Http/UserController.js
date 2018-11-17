@@ -1,24 +1,21 @@
 'use strict'
 
 const User = use('App/Models/User');
+const { userF, filterDoc } = use('App/Utils/ModelFilter');
 
 class UserController {
 
     async update({ request, response, auth }) {
-        let user = await auth.getUser();
+
+        const options = { new: true, runValidators: true, fields: userF };
+
+        let { _id } = await auth.getUser();
+
         let { name, birth, cpf } = request.all();
-        
-        user.name = name;
-        user.birth = birth;
-        user.cpf = cpf;
 
-        await user.save();
+        let user = await User.findOneAndUpdate(_id, { name, birth, cpf }, options);
 
-        reponse
-    }
-
-    async destroy() {
-
+        response.status(200).send(user);
     }
 }
 

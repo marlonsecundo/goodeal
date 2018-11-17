@@ -8,9 +8,7 @@ const goodiesF = base + ' -user'
 
 function filterDoc(doc, filter) {
 
-    let props = filter.split(' ');
-
-    props.map((item) => {
+    filter.split(' ').map((item) => {
         let prop = item.replace('-', '');
         delete doc[prop];
     });

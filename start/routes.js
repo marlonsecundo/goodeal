@@ -14,15 +14,13 @@ Route.group(() => {
 // User
 Route.post("users/login", "Auth/AuthController.loginUser");
 Route.resource('users', 'UserController')
-  .apiOnly()
-  .except('index')
-  
+  .only(['update']);
+
 // Company
 Route.post("companies/login", "Auth/AuthController.loginCompany");
 Route.resource('companies', 'CompanyController')
-  .apiOnly()
-  .except(['show'])
-  
+  .only(['update']);
+
 // Card
 Route.resource('cards', 'CardController')
   .apiOnly()
