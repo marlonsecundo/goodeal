@@ -1,2 +1,4 @@
-# goodeal
-Initial Project
+# Goodeal - Backend
+
+## Adonis JS
+## Javascript
