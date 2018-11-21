@@ -17,7 +17,7 @@ Route.post("companies/login", "Auth/AuthController.loginCompany");
 
 // User
 Route.resource('users', 'UserController')
-  .only(['update', 'show']);
+  .only(['index','update', 'show']);
 
 // Goodies
 Route.resource('users.goodies', 'GoodiesController')

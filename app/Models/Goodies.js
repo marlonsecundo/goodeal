@@ -5,7 +5,7 @@ const { Schema } = use('mongoose');
 
 class Goodies extends BaseModel {
   static boot({ schema }) {
-    this.index({ card: 1 }, { unique: true });
+    this.index({ card: 1 }, { unique: true, sparse: true });
   }
 
   static get schema() {
