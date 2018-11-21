@@ -18,7 +18,6 @@ class Subcategory extends BaseModel {
       category: {
         type: Schema.Types.ObjectId,
         ref: 'Category',
-        unique: true,
         required: true,
       }
 

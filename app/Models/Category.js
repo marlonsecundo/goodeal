@@ -13,7 +13,6 @@ class Category extends BaseModel {
       name: {
         type: String,
         required: true,
-        unique: true,
       }
     }
 

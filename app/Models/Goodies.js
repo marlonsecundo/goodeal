@@ -5,7 +5,7 @@ const { Schema } = use('mongoose');
 
 class Goodies extends BaseModel {
   static boot({ schema }) {
-    this.index({ user: 1, card: 1 }, { unique: true });
+    this.index({ card: 1 }, { unique: true });
   }
 
   static get schema() {
@@ -14,11 +14,6 @@ class Goodies extends BaseModel {
         type: Number,
         min: 0,
         default: 0,
-      },
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
       },
       card: {
         type: Schema.Types.ObjectId,
@@ -29,4 +24,4 @@ class Goodies extends BaseModel {
   }
 }
 
-module.exports = FillCard.buildModel('Goodies')
+module.exports = Goodies.buildModel('Goodies')

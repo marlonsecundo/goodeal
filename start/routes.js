@@ -11,20 +11,22 @@ Route.group(() => {
 
 }).prefix('/auth');
 
-// User
+// Login
 Route.post("users/login", "Auth/AuthController.loginUser");
-Route.resource('users', 'UserController')
-  .only(['update']);
-
-// Company
 Route.post("companies/login", "Auth/AuthController.loginCompany");
+
+// User
+Route.resource('users', 'UserController')
+  .only(['update', 'show']);
+
+// Goodies
+Route.resource('users.goodies', 'GoodiesController')
+  .apiOnly()
+  
+// Company
 Route.resource('companies', 'CompanyController')
   .only(['update']);
 
 // Card
-Route.resource('cards', 'CardController')
-  .apiOnly()
-
-// FillCards
-Route.resource('fillCards', 'FillCardController')
+Route.resource('companies.cards', 'CardController')
   .apiOnly()

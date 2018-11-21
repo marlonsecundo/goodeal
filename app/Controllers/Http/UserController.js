@@ -5,15 +5,19 @@ const { userF, filterDoc } = use('App/Utils/ModelFilter');
 
 class UserController {
 
-    async update({ request, response, auth }) {
+    async show({ request, response }) {
+
+    }
+
+    async update({ request, response }) {
 
         const options = { new: true, runValidators: true, fields: userF };
 
-        let { _id } = await auth.getUser();
+        let { id } = request.params;
 
         let { name, birth, cpf } = request.all();
 
-        let user = await User.findOneAndUpdate(_id, { name, birth, cpf }, options);
+        let user = await User.findOneAndUpdate(id, { name, birth, cpf }, options);
 
         response.status(200).send(user);
     }

@@ -35,7 +35,6 @@ class Address extends BaseModel {
         required: true,
         min: 0,
       }
-
     }
   }
 }
