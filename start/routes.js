@@ -25,7 +25,7 @@ Route.resource('users.goodies', 'GoodiesController')
   
 // Company
 Route.resource('companies', 'CompanyController')
-  .only(['update']);
+  .only(['update', 'index', 'show']);
 
 // Card
 Route.resource('companies.cards', 'CardController')

@@ -43,7 +43,7 @@ class Company extends BaseModel {
       },
       cards: [{
         type: Schema.Types.ObjectId,
-        ref: 'Card',
+        ref: 'Card',  
         required: true,
         unique: true,
       }],
